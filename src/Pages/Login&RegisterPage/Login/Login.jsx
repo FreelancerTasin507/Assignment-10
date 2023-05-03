@@ -5,8 +5,32 @@ import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Login = () => {
   // const [googleData,setGoogleData] = useState({})
+  const [error,setError] = useState('')
 
-  const { googleLogin, gitHubLogin, setUserInfo } = useContext(AuthContext);
+  const { googleLogin, gitHubLogin, setUserInfo, SignIn } = useContext(AuthContext);
+
+  
+  // Email Login -------------------------
+  const handleEmailLogin = e =>{
+    e.preventDefault();
+      const form = e.target;
+      const email = form.email.value;
+      const password = form.password.value;
+
+      console.log(email,password);
+      SignIn(email,password)
+      .then(result =>{
+        const signInUser = result.user;
+        console.log(signInUser);
+        form.reset()
+      })
+      .catch(error =>{
+        setError(error.message)
+      })
+
+    }
+  // Email Login -------------------------
+
 
   // Google Login -------------------------
   const handleGoogleLogin = (e) => {
@@ -34,10 +58,11 @@ const Login = () => {
   };
   // GitHub Login -------------------------
 
+
   return (
     <div className="mt-20 w-[400px] mx-auto border p-10 shadow-2xl">
       {/* login form */}
-      <form>
+      <form onSubmit={handleEmailLogin}>
         <h1 className="text-5xl font-semibold mb-5 ">Login Please</h1>
         <div>
           <label htmlFor="email" className="sr-only">

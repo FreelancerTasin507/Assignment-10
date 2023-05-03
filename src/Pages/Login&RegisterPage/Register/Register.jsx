@@ -16,12 +16,12 @@ const Register = () => {
     const name = form.name.value;
     const photo = form.photo.value;
     console.log(email,password,name,photo);
-    register()
+    register(email , password)
     .then(result =>{
       const registerdUser = result.user;
       setUserInfo(registerdUser);
       form.reset();
-      
+
     })
     .catch(error =>{
       setError(error.message)
