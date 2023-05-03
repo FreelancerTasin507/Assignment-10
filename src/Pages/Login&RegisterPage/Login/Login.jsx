@@ -5,6 +5,7 @@ import { FaGithub,FaGoogle } from 'react-icons/fa';
 const Login = () => {
   return (
     <div className="mt-20 w-[400px] mx-auto">
+      {/* login form */}
       <form className="border p-10 shadow-2xl">
         <h1 className="text-5xl font-semibold mb-5 ">Login Please</h1>
         <div>
@@ -55,6 +56,7 @@ const Login = () => {
         <button className="btn btn-outline btn-accent"><FaGoogle className="text-xl mr-2"></FaGoogle>Google</button>
         </div>
       </form>
+
     </div>
   );
 };
