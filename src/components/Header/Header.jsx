@@ -60,7 +60,7 @@ const Header = () => {
             <div className="flex">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={userInfo.photoURL} />
+                  <img src={userInfo.photoURL} title={userInfo.displayName ? "userInfo.displayName" : "Not found"} />
                 </div>
               </label>
               <Link>

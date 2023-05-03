@@ -1,25 +1,38 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaGithub,FaGoogle } from 'react-icons/fa';
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Login = () => {
   // const [googleData,setGoogleData] = useState({})
 
-  const { googleLogin ,setUserInfo } = useContext(AuthContext);
+  const { googleLogin, gitHubLogin, setUserInfo } = useContext(AuthContext);
 
-  const handleGoogleLogin =(e)=>{
+  // Google Login -------------------------
+  const handleGoogleLogin = (e) => {
     googleLogin()
-    .then(result =>{
-      const loggedUser = result.user;
-      setUserInfo(loggedUser);
+      .then((result) => {
+        const loggedUser = result.user;
+        setUserInfo(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  // Google Login -------------------------
 
-    })
-    .catch(error =>{
-      console.log(error.message);
-    })
-  }
-
+  // GitHub Login -------------------------
+  const handleGitHubLogin = (e) => {
+    gitHubLogin()
+      .then((result) => {
+        const loggedUser = result.user;
+        setUserInfo(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  // GitHub Login -------------------------
 
   return (
     <div className="mt-20 w-[400px] mx-auto border p-10 shadow-2xl">
@@ -66,14 +79,26 @@ const Login = () => {
             </a>
           </div>
         </div>
-          <p className="mt-3 text-slate-500">Don't Have An Accout ? <Link className="text-blue-700" to="/register">Register</Link></p>
+        <p className="mt-3 text-slate-500">
+          Don't Have An Accout ?{" "}
+          <Link className="text-blue-700" to="/register">
+            Register
+          </Link>
+        </p>
         <input className="btn w-full mt-5" type="submit" value="Login" />
       </form>
-      <hr className="border-black mb-5 mt-4"/>
-        <div className="flex flex-col gap-4">
-        <button className="btn btn-outline"><FaGithub className="text-xl mr-2"></FaGithub>GitHub</button>
-        <button onClick={handleGoogleLogin} className="btn btn-outline btn-accent"><FaGoogle className="text-xl mr-2"></FaGoogle>Google</button>
-        </div>
+      <hr className="border-black mb-5 mt-4" />
+      <div className="flex flex-col gap-4">
+        <button onClick={handleGitHubLogin} className="btn btn-outline">
+          <FaGithub className="text-xl mr-2"></FaGithub>GitHub
+        </button>
+        <button
+          onClick={handleGoogleLogin}
+          className="btn btn-outline btn-accent"
+        >
+          <FaGoogle className="text-xl mr-2"></FaGoogle>Google
+        </button>
+      </div>
     </div>
   );
 };
