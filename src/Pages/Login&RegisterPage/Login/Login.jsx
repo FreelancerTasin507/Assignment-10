@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub,FaGoogle } from 'react-icons/fa';
+import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Login = () => {
+
+  const { googleLogin } = useContext(AuthContext);
+
+  const handleGoogleLogin =(e)=>{
+    googleLogin()
+    .then(result =>{
+      const loggedUser = result.user;
+      console.log(loggedUser);
+
+    })
+    .catch(error =>{
+      console.log(error.message);
+    })
+  }
+
+
   return (
-    <div className="mt-20 w-[400px] mx-auto">
+    <div className="mt-20 w-[400px] mx-auto border p-10 shadow-2xl">
       {/* login form */}
-      <form className="border p-10 shadow-2xl">
+      <form>
         <h1 className="text-5xl font-semibold mb-5 ">Login Please</h1>
         <div>
           <label htmlFor="email" className="sr-only">
@@ -50,13 +67,12 @@ const Login = () => {
         </div>
           <p className="mt-3 text-slate-500">Don't Have An Accout ? <Link className="text-blue-700" to="/register">Register</Link></p>
         <input className="btn w-full mt-5" type="submit" value="Login" />
-        <hr className="border-black mt-5 mb-5"/>
+      </form>
+      <hr className="border-black mb-5 mt-4"/>
         <div className="flex flex-col gap-4">
         <button className="btn btn-outline"><FaGithub className="text-xl mr-2"></FaGithub>GitHub</button>
-        <button className="btn btn-outline btn-accent"><FaGoogle className="text-xl mr-2"></FaGoogle>Google</button>
+        <button onClick={handleGoogleLogin} className="btn btn-outline btn-accent"><FaGoogle className="text-xl mr-2"></FaGoogle>Google</button>
         </div>
-      </form>
-
     </div>
   );
 };

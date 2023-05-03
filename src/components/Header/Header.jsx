@@ -48,7 +48,12 @@ const Header = () => {
         </div>
         <div>
           {user 
-          ? <span className="text-white text-xl mr-4">{user.displayName}</span> 
+          ? <div>
+            <span className="text-white text-xl mr-4">{user.displayName}</span>
+            <Link>
+              <button className="btn btn-primary">Sign Out</button>
+            </Link>
+          </div> 
           : <div className="flex">
           <FaUserCircle className="text-white text-4xl mr-4"></FaUserCircle>
           <Link to='/login'>
