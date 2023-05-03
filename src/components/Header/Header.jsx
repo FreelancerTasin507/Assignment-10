@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUserCircle, FaHamburger, FaTimes } from "react-icons/fa";
 import ActiveLink from "../ActiveLink/ActiveLink";
+import { AuthContext } from "../../Providers/AuthProvider/AuthProvider";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {user} = useContext(AuthContext)
+
+  console.log(user);
 
   return (
     <div>
@@ -43,10 +47,16 @@ const Header = () => {
           </ActiveLink>
         </div>
         <div>
+          {user 
+          ? <span className="text-white text-xl mr-4">{user.displayName}</span> 
+          : <div className="flex">
           <FaUserCircle className="text-white text-4xl mr-4"></FaUserCircle>
           <Link to='/login'>
               <button className="btn btn-primary">Login</button>
             </Link>
+          </div>
+          }
+        
         </div>
       </div>
       <div className={`md:hidden ml-4 bg-slate-400 absolute z-10 p-5  flex flex-col ${isOpen === true ? 'top-16':'-top-40' }`}>
