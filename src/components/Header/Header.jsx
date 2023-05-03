@@ -15,7 +15,6 @@ const Header = () => {
         console.log(error.message);
       });
   };
-  
 
   return (
     <div>
@@ -65,16 +64,13 @@ const Header = () => {
         <div>
           {userInfo ? (
             <div className="flex">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom tooltip-secondary"
+                data-tip={userInfo.displayName}
+              >
                 <div className="w-10 rounded-full">
-                  <img
-                    src={userInfo.photoURL}
-                    title={
-                      userInfo.displayName
-                        ? "userInfo.displayName"
-                        : "Not found"
-                    }
-                  />
+                  <img src={userInfo.photoURL} />
                 </div>
               </label>
 

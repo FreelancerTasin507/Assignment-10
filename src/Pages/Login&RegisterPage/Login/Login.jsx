@@ -60,7 +60,7 @@ const Login = () => {
 
 
   return (
-    <div className="mt-20 w-[400px] mx-auto border p-10 shadow-2xl">
+    <div className="mt-20 md:w-[400px] mx-auto border p-10 shadow-2xl">
       {/* login form */}
       <form onSubmit={handleEmailLogin}>
         <h1 className="text-5xl font-semibold mb-5 ">Login Please</h1>
