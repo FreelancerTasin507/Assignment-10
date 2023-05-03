@@ -6,9 +6,16 @@ import { AuthContext } from "../../Providers/AuthProvider/AuthProvider";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo, logOut } = useContext(AuthContext);
 
-  console.log(userInfo);
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  
 
   return (
     <div>
@@ -60,12 +67,20 @@ const Header = () => {
             <div className="flex">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={userInfo.photoURL} title={userInfo.displayName ? "userInfo.displayName" : "Not found"} />
+                  <img
+                    src={userInfo.photoURL}
+                    title={
+                      userInfo.displayName
+                        ? "userInfo.displayName"
+                        : "Not found"
+                    }
+                  />
                 </div>
               </label>
-              <Link>
-                <button className="btn btn-primary">Sign Out</button>
-              </Link>
+
+              <button onClick={handleLogOut} className="btn btn-primary">
+                Sign Out
+              </button>
             </div>
           ) : (
             <div className="flex">
