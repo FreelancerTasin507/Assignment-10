@@ -15,12 +15,21 @@ const Register = () => {
     const password = form.password.value;
     const name = form.name.value;
     const photo = form.photo.value;
-    console.log(email,password,name,photo);
+    // console.log(email,password,name,photo);
+
+    if (password.length < 6) {
+      setError('Password should be at least 6 characters');
+      return;
+    }
+
+    setSuccess('')
+    setError('')
     register(email , password)
     .then(result =>{
       const registerdUser = result.user;
       setUserInfo(registerdUser);
       form.reset();
+      setSuccess('Register Success !')
 
     })
     .catch(error =>{
@@ -89,6 +98,7 @@ const Register = () => {
             </a>
           </div>
         </div>
+        <p className="mt-2 text-red-600">{error}</p>
           <p className="mt-3 text-slate-500">Already Have An Accout ? <Link className="text-blue-700" to="/login">Login</Link></p>
         <input className="btn w-full mt-5" type="submit" value="Register" />
       </form>

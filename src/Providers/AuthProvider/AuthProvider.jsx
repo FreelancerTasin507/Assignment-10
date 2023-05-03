@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -16,17 +16,21 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
 
   // Google login
   const googleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
   // Google login
 
   // GitHub login
   const gitHubLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, gitHubProvider);
   };
   // GitHub login
@@ -35,16 +39,19 @@ const AuthProvider = ({ children }) => {
 
   //User Register
   const register = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   //User Register
 
   // User Login
   const SignIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   //User Login
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   //   User LogOut
@@ -54,6 +61,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
       console.log("Logged user observer", loggedUser);
       setUserInfo(loggedUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -72,6 +80,7 @@ const AuthProvider = ({ children }) => {
     register,
     SignIn,
     logOut,
+    loading
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

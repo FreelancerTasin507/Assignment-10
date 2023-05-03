@@ -89,7 +89,7 @@ const Header = () => {
         </div>
       </div>
       <div
-        className={`md:hidden ml-4 bg-slate-400 absolute z-10 p-5  flex flex-col ${
+        className={`md:hidden ml-4 bg-slate-400 fixed z-10 p-5  flex flex-col ${
           isOpen === true ? "top-16" : "-top-40"
         }`}
       >

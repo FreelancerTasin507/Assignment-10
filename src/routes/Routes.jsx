@@ -8,6 +8,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 import Login from "../Pages/Login&RegisterPage/Login/Login";
 import Register from "../Pages/Login&RegisterPage/Register/Register";
 import ViewRecipes from "../Pages/ViewRecipes/ViewRecipes";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     children: [
       {
         path:':id',
-        element: <ViewRecipes></ViewRecipes>,
+        element: <PrivateRoute><ViewRecipes></ViewRecipes></PrivateRoute>,
         loader: ({params}) => fetch(`https://assignment-10-server-deploy-render.onrender.com/viewRecipes/${params.id}`)
         
       },

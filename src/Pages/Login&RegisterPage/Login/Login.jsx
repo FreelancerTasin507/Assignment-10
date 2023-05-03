@@ -1,36 +1,39 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Login = () => {
   // const [googleData,setGoogleData] = useState({})
-  const [error,setError] = useState('')
+  const [error, setError] = useState("");
 
-  const { googleLogin, gitHubLogin, setUserInfo, SignIn } = useContext(AuthContext);
+  const { googleLogin, gitHubLogin, setUserInfo, SignIn } =
+    useContext(AuthContext);
 
-  
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   // Email Login -------------------------
-  const handleEmailLogin = e =>{
+  const handleEmailLogin = (e) => {
     e.preventDefault();
-      const form = e.target;
-      const email = form.email.value;
-      const password = form.password.value;
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-      console.log(email,password);
-      SignIn(email,password)
-      .then(result =>{
+    console.log(email, password);
+    SignIn(email, password)
+      .then((result) => {
         const signInUser = result.user;
         console.log(signInUser);
-        form.reset()
+        form.reset();
+        navigate(from);
       })
-      .catch(error =>{
-        setError(error.message)
-      })
-
-    }
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
   // Email Login -------------------------
-
 
   // Google Login -------------------------
   const handleGoogleLogin = (e) => {
@@ -38,6 +41,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         setUserInfo(loggedUser);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
@@ -51,13 +55,13 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         setUserInfo(loggedUser);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
       });
   };
   // GitHub Login -------------------------
-
 
   return (
     <div className="mt-20 md:w-[400px] mx-auto border p-10 shadow-2xl">
@@ -110,6 +114,8 @@ const Login = () => {
             Register
           </Link>
         </p>
+        <p className="mt-2 text-red-600">{error}</p>
+
         <input className="btn w-full mt-5" type="submit" value="Login" />
       </form>
       <hr className="border-black mb-5 mt-4" />
