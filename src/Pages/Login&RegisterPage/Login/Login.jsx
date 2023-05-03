@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub,FaGoogle } from 'react-icons/fa';
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Login = () => {
+  // const [googleData,setGoogleData] = useState({})
 
-  const { googleLogin } = useContext(AuthContext);
+  const { googleLogin ,setUserInfo } = useContext(AuthContext);
 
   const handleGoogleLogin =(e)=>{
     googleLogin()
     .then(result =>{
       const loggedUser = result.user;
-      console.log(loggedUser);
+      setUserInfo(loggedUser);
 
     })
     .catch(error =>{
