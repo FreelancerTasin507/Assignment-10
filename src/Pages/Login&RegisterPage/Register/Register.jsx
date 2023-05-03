@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const [error,setError] = useState('')
+  const [success,setSuccess] = useState('')
+  
+  const { register ,setUserInfo } = useContext(AuthContext)
+
+  const handleRegister = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    console.log(email,password,name,photo);
+    register()
+    .then(result =>{
+      const registerdUser = result.user;
+      setUserInfo(registerdUser);
+      form.reset();
+      
+    })
+    .catch(error =>{
+      setError(error.message)
+    })
+  }
+
   return (
     <div className="mt-20 w-[410px] mx-auto">
-      <form className="border p-10 shadow-2xl">
+      <form onSubmit={handleRegister} className="border p-10 shadow-2xl">
         <h1 className="text-5xl font-semibold mb-5 ">Register Please</h1>
         <div>
           <input
