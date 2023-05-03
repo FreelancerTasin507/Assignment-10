@@ -62,14 +62,6 @@ const Register = () => {
               Forgot your password?
             </a>
           </div>
-          <div className="text-sm">
-            <a
-              href="#"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              Forgot your password?
-            </a>
-          </div>
         </div>
           <p className="mt-3 text-slate-500">Already Have An Accout ? <Link className="text-blue-700" to="/login">Login</Link></p>
         <input className="btn w-full mt-5" type="submit" value="Register" />
