@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import AboutSection from "../../components/AboutSection/AboutSection";
 import ChefsDetails from "../../components/ChefsDetails/ChefsDetails";
 import Footer from "../../components/Footer/Footer";
 
@@ -31,7 +32,7 @@ const HomePage = () => {
           take care of <br /> all your dining needs.
         </p>
       </div>
-      <div >
+      <div className="mb-52">
         <h1 className="font-bold text-5xl text-center">Our Best Chefs</h1>
 
         <div className="md:grid md:grid-cols-2 md:ml-36 gap-8 mb-10 mt-20">
@@ -40,6 +41,7 @@ const HomePage = () => {
           ))}
         </div>
       </div>
+      <AboutSection></AboutSection>
       <Footer></Footer>
     </div>
   );
