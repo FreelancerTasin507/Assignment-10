@@ -8,8 +8,8 @@ const Main = () => {
 
   return (
     <div>
+      <Toaster/>
       <Header></Header>
-      <Toaster></Toaster>
       <Outlet></Outlet>
     </div>
   );

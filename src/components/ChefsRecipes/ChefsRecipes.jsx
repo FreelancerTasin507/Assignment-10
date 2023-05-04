@@ -12,11 +12,17 @@ const ChefsRecipes = ({ recipe }) => {
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
     setIsClicked(true);
+if(isClicked){
+            toast.error("Can't apply more")
+        }
+        else{
+            console.log(isClicked);
+            
+            toast.success(" Favorite  successfully Add!")
+        }
   };
 
-  if (isClicked) {
-    toast.success("added successfully!");
-  }
+ 
 
   return (
     <div>
