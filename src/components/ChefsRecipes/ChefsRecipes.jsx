@@ -3,6 +3,7 @@ import { FaBookmark, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
 import LazyLoad from "react-lazy-load";
 import "@smastrom/react-rating/style.css";
+import toast from "react-hot-toast";
 
 const ChefsRecipes = ({ recipe }) => {
   console.log(recipe);
@@ -12,6 +13,10 @@ const ChefsRecipes = ({ recipe }) => {
   const handleClick = () => {
     setIsClicked(true);
   };
+
+  if (isClicked) {
+    toast.success("added successfully!");
+  }
 
   return (
     <div>
