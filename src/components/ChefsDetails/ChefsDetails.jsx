@@ -15,9 +15,9 @@ const ChefsDetails = ({ chefDetails }) => {
 
   return (
     <div>
-      <div className="card md:w-3/4 bg-base-100 shadow-xl mb-5">
+      <div className="card md:w-3/4 bg-base-100 shadow-xl mb-5 hover:shadow-2xl">
         <figure>
-          <img className="md:h-[300px]" src={chef_picture} alt="chef_picture" />
+          <img className="md:h-[300px] transition duration-500 transform hover:scale-110" src={chef_picture} alt="chef_picture" />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-2xl font-bold">Name: {chef_name}</h2>
