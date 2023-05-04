@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import AboutSection from "../../components/AboutSection/AboutSection";
 import ChefsDetails from "../../components/ChefsDetails/ChefsDetails";
+import CollapsSection from "../../components/CollapsSection/CollapsSection";
 import Footer from "../../components/Footer/Footer";
 
 const HomePage = () => {
@@ -42,6 +43,7 @@ const HomePage = () => {
         </div>
       </div>
       <AboutSection></AboutSection>
+      <CollapsSection></CollapsSection>
       <Footer></Footer>
     </div>
   );
