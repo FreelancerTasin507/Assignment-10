@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Login = () => {
   // const [googleData,setGoogleData] = useState({})
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const { googleLogin, gitHubLogin, setUserInfo, SignIn } =
     useContext(AuthContext);
@@ -48,7 +50,7 @@ const Login = () => {
       });
   };
   // Google Login -------------------------
-// ------
+  // ------
   // GitHub Login -------------------------
   const handleGitHubLogin = (e) => {
     gitHubLogin()
@@ -62,6 +64,10 @@ const Login = () => {
       });
   };
   // GitHub Login -------------------------
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((show) => !show);
+  };
 
   return (
     <div className="mt-20 md:w-[400px] mx-auto border p-10 shadow-2xl">
@@ -83,19 +89,21 @@ const Login = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="password" className="sr-only">
-            Password
-          </label>
+        <div className="flex justify-center items-center gap-2">
           <input
             id="password"
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             autoComplete="current-password"
             required
             className="w-full px-3 py-2 rounded-xl mb-3"
             placeholder="Password"
           />
+          {showPassword ? (
+            <FaEyeSlash onClick={togglePasswordVisibility} />
+          ) : (
+            <FaEye onClick={togglePasswordVisibility} />
+          )}
         </div>
 
         <div className="flex items-center justify-between">

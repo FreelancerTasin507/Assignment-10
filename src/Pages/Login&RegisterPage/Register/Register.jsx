@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const Register = () => {
-  const [error,setError] = useState('')
-  const [success,setSuccess] = useState('')
-  
-  const { register ,setUserInfo } = useContext(AuthContext)
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleRegister = e =>{
+  const { register, setUserInfo } = useContext(AuthContext);
+
+  const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -18,29 +20,34 @@ const Register = () => {
     // console.log(email,password,name,photo);
 
     if (password.length < 6) {
-      setError('Password should be at least 6 characters');
+      setError("Password should be at least 6 characters");
       return;
     }
 
-    setSuccess('')
-    setError('')
-    register(email , password)
-    .then(result =>{
-      const registerdUser = result.user;
-      setUserInfo(registerdUser);
-      form.reset();
-      setSuccess('Register Success !')
+    setSuccess("");
+    setError("");
+    register(email, password)
+      .then((result) => {
+        const registerdUser = result.user;
+        setUserInfo(registerdUser);
+        form.reset();
+        setSuccess("Register Success !");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
 
-    })
-    .catch(error =>{
-      setError(error.message)
-    })
-  }
+  const togglePasswordVisibility = () => {
+    setShowPassword((show) => !show);
+  };
 
   return (
     <div className="mt-20 md:w-[410px] mx-auto">
       <form onSubmit={handleRegister} className="border p-10 shadow-2xl">
-        <h1 className="md:text-5xl text-4xl font-semibold mb-5 ">Register Please</h1>
+        <h1 className="md:text-5xl text-4xl font-semibold mb-5 ">
+          Register Please
+        </h1>
         <div>
           <input
             id="name"
@@ -75,17 +82,21 @@ const Register = () => {
           />
         </div>
 
-        <div>
-
+        <div className="flex justify-center items-center gap-2">
           <input
             id="password"
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             autoComplete="current-password"
             required
             className="w-full px-3 py-2 rounded-xl mb-3"
             placeholder="Password"
           />
+          {showPassword ? (
+            <FaEyeSlash onClick={togglePasswordVisibility} />
+          ) : (
+            <FaEye onClick={togglePasswordVisibility} />
+          )}
         </div>
 
         <div className="flex items-center justify-between">
@@ -99,7 +110,12 @@ const Register = () => {
           </div>
         </div>
         <p className="mt-2 text-red-600">{error}</p>
-          <p className="mt-3 text-slate-500">Already Have An Accout ? <Link className="text-blue-700" to="/login">Login</Link></p>
+        <p className="mt-3 text-slate-500">
+          Already Have An Accout ?{" "}
+          <Link className="text-blue-700" to="/login">
+            Login
+          </Link>
+        </p>
         <input className="btn w-full mt-5" type="submit" value="Register" />
       </form>
     </div>
