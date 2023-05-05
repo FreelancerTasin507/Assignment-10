@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { FaBookmark, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
 import LazyLoad from "react-lazy-load";
@@ -12,23 +12,20 @@ const ChefsRecipes = ({ recipe }) => {
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
     setIsClicked(true);
-if(isClicked){
-            toast.error("Can't apply more")
-        }
-        else{
-            console.log(isClicked);
-            
-            toast.success(" Favorite  successfully Add!")
-        }
-  };
+    if (isClicked) {
+      toast.error("Can't apply more");
+    } else {
+      console.log(isClicked);
 
- 
+      toast.success(" Favorite  successfully Add!");
+    }
+  };
 
   return (
     <div>
       <div className="card card-side bg-base-100 shadow-xl mt-5 flex flex-col md:flex-row">
         <figure>
-          <img className="md:h-full md:w-full" src={image} alt="" />
+        <img className="md:h-full md:w-full" src={image} alt=""/>
         </figure>
         <div className="card-body md:w-[80%]">
           <h2 className="card-title">{recipe_name}</h2>

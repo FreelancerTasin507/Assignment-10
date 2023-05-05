@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import ChefsRecipes from "../../components/ChefsRecipes/ChefsRecipes";
@@ -30,7 +30,7 @@ useEffect(()=>{
     <div className="md:flex mt-28 md:gap-10">
       <div className="md:w-[40%] h-1/2 ml-4 p-5 shadow-2xl sticky top-16">
         <div>
-          <img className="md:rounded-3xl md:w-full" src={chef_picture} alt="" />
+          <img className="md:rounded-3xl md:w-full" src={chef_picture} alt="" loading={lazy}/>
           <h2 className="font-semibold text-3xl text-center mb-4">
             {chef_name}
           </h2>
