@@ -48,7 +48,7 @@ const Login = () => {
       });
   };
   // Google Login -------------------------
-
+// ------
   // GitHub Login -------------------------
   const handleGitHubLogin = (e) => {
     gitHubLogin()
