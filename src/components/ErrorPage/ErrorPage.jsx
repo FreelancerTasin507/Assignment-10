@@ -6,7 +6,7 @@ const ErrorPage = () => {
     <div className="text-center">
       <img
         className="mx-auto mt-20"
-        src="../../../public/Images/ErrorImage/errorPage.png"
+        src="https://i.ibb.co/gJXGskp/error-Page.png"
         alt=""
       />
       <Link

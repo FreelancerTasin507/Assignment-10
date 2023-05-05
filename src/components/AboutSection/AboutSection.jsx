@@ -24,39 +24,39 @@ const AboutSection = () => {
         <div className="grid grid-cols-3 gap-4">
           <img
             className="rounded-2xl transition duration-500 transform hover:scale-110"
-            src="../../../public/Images/AboutImages/aboutImage-1.jpg"
+            src="https://i.ibb.co/yq9W185/about-Image-1.jpg"
             alt=""
           />
           <img
             className="rounded-2xl transition duration-500 transform hover:scale-110"
-            src="../../../public/Images/AboutImages/aboutImage-2.jpg"
+            src="https://i.ibb.co/znTHs4x/about-Image-2.jpg"
             alt=""
           />
           <img
             className="rounded-2xl transition duration-500 transform hover:scale-110"
-            src="../../../public/Images/AboutImages/aboutImage-3.jpg"
+            src="https://i.ibb.co/Sc2nQR0/about-Image-3.jpg"
             alt=""
           />
           <img
             className="rounded-2xl transition duration-500 transform hover:scale-110"
-            src="../../../public/Images/AboutImages/aboutImage-7.jpg"
+            src="https://i.ibb.co/zSj0Fqr/about-Image-7.jpg"
             alt=""
           />
           <div className="flex flex-col justify-between">
             <img
               className="rounded-2xl transition duration-500 transform hover:scale-110"
-              src="../../../public/Images/AboutImages/aboutImage-4.jpg"
+              src="https://i.ibb.co/cwPfwhg/about-Image-4.jpg"
               alt=""
             />
             <img
               className="rounded-2xl transition duration-500 transform hover:scale-110"
-              src="../../../public/Images/AboutImages/aboutImage-6.jpg"
+              src="https://i.ibb.co/1T5MsDN/about-Image-6.jpg"
               alt=""
             />
           </div>
           <img
             className="rounded-2xl transition duration-500 transform hover:scale-110"
-            src="../../../public/Images/AboutImages/aboutImage-5.jpg"
+            src="https://i.ibb.co/mFY6zPb/about-Image-5.jpg"
             alt=""
           />
         </div>
